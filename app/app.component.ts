@@ -10,6 +10,7 @@ import { Component, ElementRef } from '@angular/core';
 })
 export class AppComponent { 
 	constructor(elementRef: ElementRef) {
-  	console.log(elementRef.nativeElement.getAttribute("appCtxt"));
+		var thisContext = JSON.parse(elementRef.nativeElement.getAttribute("appCtxt"));
+  	console.log(thisContext);
   }
 }

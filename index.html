@@ -15,15 +15,19 @@
 
     <script src="systemjs.config.js"></script>
     <script>
+      var appCtxt = {"employees":[
+                        {"firstName":"John", "lastName":"Doe"},
+                        {"firstName":"Anna", "lastName":"Smith"},
+                        {"firstName":"Peter", "lastName":"Jones"}
+                    ]}
       System.import('app').catch(function(err){ console.error(err); });
     </script>
   </head>
 
   <body>
-    <my-app>Loading...</my-app>
+    <my-app appCtxt='{"appTitle":"FooTitle", "appOwner":"Foo Owner"}'>
+    Loading...
+    </my-app>
 
-    <div class="appCtxt" style="display: none;">
-      some context 
-    </div>
   </body>
 </html>
