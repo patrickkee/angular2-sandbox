@@ -15,13 +15,13 @@
 
     <script src="systemjs.config.js"></script>
     <script>
-      var appCtxt = {"employees":[
-                        {"firstName":"John", "lastName":"Doe"},
-                        {"firstName":"Anna", "lastName":"Smith"},
-                        {"firstName":"Peter", "lastName":"Jones"}
-                    ]}
       System.import('app').catch(function(err){ console.error(err); });
     </script>
+
+    <script>
+      var appCtxt = { foo: 'bar3' }
+    </script>
+
   </head>
 
   <body>
