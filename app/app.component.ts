@@ -20,7 +20,7 @@ export class AppComponent {
   appCtxt: any;
   echoTxt: string;
   constructor() {
-    this.appCtxt = window.appCtxt;
+    this.appCtxt = (<any>window).applicationContext;
     this.appCtxt.interactive = false;
     this.echoTxt = "";
   }
