@@ -1,14 +1,19 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { Store, StoreModule } from '@ngrx/store';
 
 import { AppComponent }  from './app.component';
 import { Child }  from './Child.component';
+import { appState }  from './reducer.appstate';
 
 @NgModule({
-  imports:      [ BrowserModule ],
+  imports:      [ 
+  	BrowserModule,
+  	StoreModule.provideStore({appState}) 
+  ],
   declarations: [ 
   	AppComponent,
-  	Child 
+  	Child
   ],
   bootstrap:    [ AppComponent ]
 })

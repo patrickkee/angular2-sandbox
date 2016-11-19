@@ -1,16 +1,19 @@
 import { Component, ElementRef } from '@angular/core';
+import { Store, StoreModule } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'my-app',
     template: `
     	<h1>Hello Angular!</h1>
     	<p>Application Context Foo Value: <strong>{{appCtxt.foo}}</strong></p>
+    	<p>Current Item is: <strong>{{_appState | async}}</strong></p>
     	<child></child>
     	<br/><br/>
 	    <button (click)="toggleInteractive()">Interactive Mode</button>
 	    <br/><br/>
 	    <div *ngIf="appCtxt.interactive==true">
-		    <textarea rows="1" (keyup)="onkeyup($event)">{{echoTxt}}</textarea>
+		    <textarea rows="1" (keyup)="onkeyup($event)"></textarea>
 		    <button (click)="onClickMe()">Alert Me!</button>
 		    <p>{{echoTxt}}</p>
 		  </div>
@@ -18,11 +21,16 @@ import { Component, ElementRef } from '@angular/core';
 })
 export class AppComponent { 
   appCtxt: any;
-  echoTxt: string;
-  constructor() {
+  echoTxt: any;
+  _appState: Observable<any>;
+  constructor(private _store: Store<any>) {
     this.appCtxt = (<any>window).applicationContext;
     this.appCtxt.interactive = false;
     this.echoTxt = "";
+    
+    //bind the observable appState to the local appState instance
+    this._appState = _store.select('appState');
+
   }
 
   onClickMe() {
@@ -30,7 +38,7 @@ export class AppComponent {
   }
 
   onkeyup(event:any) {
-  	this.echoTxt = event.target.value;
+  	this._store.dispatch({type: "ADD_ITEM", payload: {item: event.target.value}})
   }
 
   toggleInteractive() {

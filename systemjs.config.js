@@ -24,6 +24,10 @@
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
       '@angular/upgrade': 'npm:@angular/upgrade/bundles/upgrade.umd.js',
 
+      //@ngrx libraries
+      '@ngrx/core': 'npm:@ngrx/core/bundles/core.umd.js',
+      '@ngrx/store': 'npm:@ngrx/store/bundles/store.umd.js',
+
       // other libraries
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
