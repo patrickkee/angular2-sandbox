@@ -1,14 +1,14 @@
 import { Component, ElementRef } from '@angular/core';
 import { Store, StoreModule } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
+import { AppStore } from './interface.appstore';
 
 @Component({
     selector: 'my-app',
     template: `
     	<h1>Hello Angular!</h1>
     	<p>Application Context Foo Value: <strong>{{appCtxt.foo}}</strong></p>
-    	<p>Current Item is: <strong>{{_appState | async}}</strong></p>
-    	<child></child>
+    	<child [appStore]="_appState | async"></child>
     	<br/><br/>
 	    <button (click)="toggleInteractive()">Interactive Mode</button>
 	    <br/><br/>
@@ -22,7 +22,7 @@ import { Observable } from 'rxjs/Observable';
 export class AppComponent { 
   appCtxt: any;
   echoTxt: any;
-  _appState: Observable<any>;
+  _appState: Observable<AppStore>;
   constructor(private _store: Store<any>) {
     this.appCtxt = (<any>window).applicationContext;
     this.appCtxt.interactive = false;
