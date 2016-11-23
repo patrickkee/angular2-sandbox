@@ -15,7 +15,7 @@ import { AppStore } from './interface.appstore';
 	    <div *ngIf="appCtxt.interactive==true">
 		    <textarea rows="1" (keyup)="onkeyup($event)"></textarea>
 		    <button (click)="onClickMe()">Alert Me!</button>
-		    <p>{{echoTxt}}</p>
+		    <p>{{(_appState | async)?.item}}</p>
 		  </div>
     `
 })
