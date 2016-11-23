@@ -23,14 +23,15 @@ export class AppComponent {
   appCtxt: any;
   echoTxt: any;
   _appState: Observable<AppStore>;
-  constructor(private _store: Store<any>) {
+  constructor(private _store: Store<AppStore>) {
     this.appCtxt = (<any>window).applicationContext;
     this.appCtxt.interactive = false;
     this.echoTxt = "";
-    
-    //bind the observable appState to the local appState instance
-    this._appState = _store.select('appState');
+  }
 
+  ngOnInit() {
+  	//bind the observable appState to the local appState instance
+    this._appState = this._store.select('appState');
   }
 
   onClickMe() {
