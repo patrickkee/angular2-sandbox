@@ -2,7 +2,7 @@ import { Component, ElementRef } from '@angular/core';
 import { Store, StoreModule } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { AppStore } from './interface.appstore';
-import { itemValue } from './reducer.appstate';
+import { getItemValue, getInteractiveMode } from './reducer.appstate';
 
 @Component({
     selector: 'my-app',
@@ -13,10 +13,10 @@ import { itemValue } from './reducer.appstate';
     	<br/><br/>
 	    <button (click)="toggleInteractive()">Interactive Mode</button>
 	    <br/><br/>
-	    <div *ngIf="appCtxt.interactive==true">
+	    <div *ngIf="(_interactiveMode | async)==true">
 		    <textarea rows="1" (keyup)="onkeyup($event)"></textarea>
 		    <button (click)="onClickMe()">Alert Me!</button>
-		    <p>{{(_appState | async)?.item}}</p>
+		    <p>{{(_itemValue | async)}}</p>
 		  </div>
     `
 })
@@ -24,7 +24,9 @@ export class AppComponent {
   appCtxt: any;
   echoTxt: any;
   _appState: Observable<AppStore>;
-  _itemValue: Observable<any>;
+  _itemValue: Observable<string>;
+  _interactiveMode: Observable<boolean>;
+
   constructor(private _store: Store<AppStore>) {
     this.appCtxt = (<any>window).applicationContext;
     this.appCtxt.interactive = false;
@@ -34,7 +36,8 @@ export class AppComponent {
   ngOnInit() {
   	//bind the observable appState to the local appState instance
     this._appState = this._store.select('appState');
-    this._itemValue = this._store.select(itemValue);
+    this._itemValue = this._store.select(getItemValue);
+    this._interactiveMode = this._store.select(getInteractiveMode);
 
   }
 
@@ -47,6 +50,6 @@ export class AppComponent {
   }
 
   toggleInteractive() {
-  	this.appCtxt.interactive = !this.appCtxt.interactive;
+  	this._store.dispatch({type: "TOGGLE_INTERACTIVE"});
   }
 }

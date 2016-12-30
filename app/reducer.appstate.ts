@@ -9,14 +9,15 @@ var defaultState = <AppStore>{id: 0,
 export const appState = (state: AppStore = defaultState, action: Action) => {
   switch (action.type) {
   	case 'ADD_ITEM': 
-  		var output = <AppStore>{id: state.id+1, item: action.payload.item};
-  		console.log(output);
-  		//console.log(itemValue(output));
-    	return output
+  		return <AppStore>{id: state.id+1, item: action.payload.item, interactiveMode: state.interactiveMode};
+    	 
+    case 'TOGGLE_INTERACTIVE': 
+  		return <AppStore>{id: state.id, item: state.item, interactiveMode: !state.interactiveMode};
     default:
       return state;
   }
 };
 
 
-export const itemValue = (state: AppStore) => {value: (state)};
+export const getItemValue = (state: AppStore) => state.appState.item;
+export const getInteractiveMode = (state: AppStore) => state.appState.interactiveMode;

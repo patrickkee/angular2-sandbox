@@ -13,17 +13,7 @@ export class Child {
 	@Input() itemValue: any;
 
 	ngOnChanges() {
-		console.log("appStore:");
-		console.log(this.appStore);
-		console.log(JSON.stringify(this.appStore);
-		console.log(this.appStore.id);
-		console.log(this.appStore.item);
-
-		console.log("itemValue:");
-		console.log(this.itemValue);
-		console.log(JSON.stringify(this.itemValue);
-
-
-
+		console.log("appStore:", this.appStore);
+		console.log("itemValue:", this.itemValue);
 	}
 }
