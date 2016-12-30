@@ -9,8 +9,14 @@ var defaultState = <AppStore>{id: 0,
 export const appState = (state: AppStore = defaultState, action: Action) => {
   switch (action.type) {
   	case 'ADD_ITEM': 
-    	return <AppStore>{id: state.id+1, item: action.payload.item} 
+  		var output = <AppStore>{id: state.id+1, item: action.payload.item};
+  		console.log(output);
+  		//console.log(itemValue(output));
+    	return output
     default:
       return state;
   }
 };
+
+
+export const itemValue = (state: AppStore) => {value: (state)};

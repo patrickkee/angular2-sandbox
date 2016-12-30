@@ -37,6 +37,7 @@
 
     "@ngrx/core": "1.2.0",
     "@ngrx/store": "2.2.1",
+    "reselect": "^2.5.4",
 
     "angular-in-memory-web-api": "~0.1.13",
     "systemjs": "0.19.40",

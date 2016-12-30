@@ -5,11 +5,12 @@ import { Store, StoreModule } from '@ngrx/store';
 import { AppComponent }  from './app.component';
 import { Child }  from './Child.component';
 import { appState }  from './reducer.appstate';
+import { loanState }  from './reducer.loan';
 
 @NgModule({
   imports:      [ 
   	BrowserModule,
-  	StoreModule.provideStore({appState}) 
+  	StoreModule.provideStore({appState})
   ],
   declarations: [ 
   	AppComponent,
