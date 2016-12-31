@@ -2,7 +2,7 @@ import { Component, ElementRef } from '@angular/core';
 import { Store, StoreModule } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { AppStore } from './interface.appstore';
-import { getItemValue, getInteractiveMode } from './reducer.appstate';
+import { getItemValue, getItemValue2, getInteractiveMode } from './reducer.appstate';
 
 @Component({
     selector: 'my-app',
@@ -10,6 +10,7 @@ import { getItemValue, getInteractiveMode } from './reducer.appstate';
     	<h1>Hello Angular!</h1>
     	<p>Application Context Foo Value: <strong>{{appCtxt.foo}}</strong></p>
     	<child [appStore]="_appState | async" [itemValue]="_itemValue | async"></child>
+    	<child2 [itemValue2]="_itemValue2 | async"></child2>
     	<br/><br/>
 	    <button (click)="toggleInteractive()">Interactive Mode</button>
 	    <br/><br/>
@@ -25,6 +26,8 @@ export class AppComponent {
   echoTxt: any;
   _appState: Observable<AppStore>;
   _itemValue: Observable<string>;
+  _itemValue2: Observable<string>;
+
   _interactiveMode: Observable<boolean>;
 
   constructor(private _store: Store<AppStore>) {
@@ -37,6 +40,8 @@ export class AppComponent {
   	//bind the observable appState to the local appState instance
     this._appState = this._store.select('appState');
     this._itemValue = this._store.select(getItemValue);
+    this._itemValue2 = this._store.select(getItemValue2);
+
     this._interactiveMode = this._store.select(getInteractiveMode);
 
   }
