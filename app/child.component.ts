@@ -1,4 +1,4 @@
-import { Input, Component, ngOnChanges } from '@angular/core';
+import { Input, Component, OnChanges } from '@angular/core';
 import { AppStore } from './interface.appstore'
 
 @Component({

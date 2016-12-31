@@ -6,7 +6,6 @@ import { AppComponent }  from './app.component';
 import { Child }  from './child.component';
 import { Child2 }  from './child2.component';
 import { appState }  from './reducer.appstate';
-import { loanState }  from './reducer.loan';
 
 @NgModule({
   imports:      [ 

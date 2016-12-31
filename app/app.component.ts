@@ -2,7 +2,7 @@ import { Component, ElementRef } from '@angular/core';
 import { Store, StoreModule } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { AppStore } from './interface.appstore';
-import { getItemValue, getItemValue2, getInteractiveMode } from './reducer.appstate';
+import { getItemValue, getItem2Value, getInteractiveMode } from './reducer.appstate';
 
 @Component({
     selector: 'my-app',
@@ -45,7 +45,7 @@ export class AppComponent {
   	//bind the observable appState to the local appState instance
     this._appState = this._store.select('appState');
     this._itemValue = this._store.select(getItemValue);
-    this._itemValue2 = this._store.select(getItemValue2);
+    this._itemValue2 = this._store.select(getItem2Value);
 
     this._interactiveMode = this._store.select(getInteractiveMode);
 

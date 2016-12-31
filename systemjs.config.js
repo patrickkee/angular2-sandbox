@@ -24,9 +24,10 @@
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
       '@angular/upgrade': 'npm:@angular/upgrade/bundles/upgrade.umd.js',
 
-      //@ngrx libraries
+      //@ngrx related libraries
       '@ngrx/core': 'npm:@ngrx/core/bundles/core.umd.js',
       '@ngrx/store': 'npm:@ngrx/store/bundles/store.umd.js',
+      'reselect': 'npm:reselect/dist/reselect.js',
 
       // other libraries
       'rxjs':                      'npm:rxjs',

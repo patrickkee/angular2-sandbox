@@ -1,10 +1,11 @@
 // The "appState" reducer performs actions on our application state
 import {Action} from '@ngrx/store';
 import {AppStore} from './interface.appstore';
+import { createSelector } from 'reselect';
 
 var defaultState = <AppStore>{id: 0,
 															item: "default",
-															item2: "default2",
+															item2: {value: "default2"},
 															interactiveMode: false}
 
 export const appState = (state: AppStore = defaultState, action: Action) => {
@@ -14,7 +15,7 @@ export const appState = (state: AppStore = defaultState, action: Action) => {
   											interactiveMode: state.interactiveMode, item2: state.item2 };
   	case 'ADD_ITEM2': 
   		return <AppStore>{id: state.id, item: state.item, 
-  											interactiveMode: state.interactiveMode, item2: action.payload.item };
+  											interactiveMode: state.interactiveMode, item2: {value: action.payload.item} };
     case 'TOGGLE_INTERACTIVE': 
   		return <AppStore>{id: state.id, item: state.item, interactiveMode: !state.interactiveMode, item2: state.item2 };
     default:
@@ -23,6 +24,9 @@ export const appState = (state: AppStore = defaultState, action: Action) => {
 };
 
 
-export const getItemValue = (state: AppStore) => state.appState.item;
-export const getItemValue2 = (state: AppStore) => state.appState.item2;
-export const getInteractiveMode = (state: AppStore) => state.appState.interactiveMode;
+export const getItemValue = (state: any) => state.appState.item;
+
+
+export const getItem2 = (state: any) => state.appState.item2;
+export const getItem2Value = createSelector(getItem2, (state: any) => state.value);
+export const getInteractiveMode = (state: any) => state.appState.interactiveMode;
