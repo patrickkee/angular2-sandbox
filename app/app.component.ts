@@ -11,13 +11,18 @@ import { getItemValue, getItemValue2, getInteractiveMode } from './reducer.appst
     	<p>Application Context Foo Value: <strong>{{appCtxt.foo}}</strong></p>
     	<child [appStore]="_appState | async" [itemValue]="_itemValue | async"></child>
     	<child2 [itemValue2]="_itemValue2 | async"></child2>
+		  <p>ItemValue selector Value: {{(_itemValue | async)}}</p>
+
     	<br/><br/>
 	    <button (click)="toggleInteractive()">Interactive Mode</button>
 	    <br/><br/>
 	    <div *ngIf="(_interactiveMode | async)==true">
-		    <textarea rows="1" (keyup)="onkeyup($event)"></textarea>
-		    <button (click)="onClickMe()">Alert Me!</button>
-		    <p>{{(_itemValue | async)}}</p>
+		    <label>Item1</label>
+		    <textarea rows="1" (keyup)="itemChange($event)"></textarea>
+
+		    <br/>
+		    <label>Item2</label>
+		    <textarea rows="1" (keyup)="item2Change($event)"></textarea>
 		  </div>
     `
 })
@@ -46,12 +51,12 @@ export class AppComponent {
 
   }
 
-  onClickMe() {
-  	this._store.dispatch({type: "ADD_ITEM", payload: {item: "e"}})
+  itemChange(event:any) {
+  	this._store.dispatch({type: "ADD_ITEM", payload: {item: event.target.value}})
   }
 
-  onkeyup(event:any) {
-  	this._store.dispatch({type: "ADD_ITEM", payload: {item: event.target.value}})
+  item2Change(event:any) {
+  	this._store.dispatch({type: "ADD_ITEM2", payload: {item: event.target.value}})
   }
 
   toggleInteractive() {
